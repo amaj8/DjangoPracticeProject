@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'music/base_template.html' %}
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {{a.album_title}}
+        {% endblock%}
+    </title>
+</head>
+<body>
+{% block body %}
+
+    <h1>Details for album id {{a.id}}</h1><br>
+    Album title: {{a.album_title}}<br>
+    Artist: {{a.artist}}<br>
+    Genre: {{a.genre}}<br>
+    <! {% load static %} >
+    <img src = "{{ a.album_logo }}" height="150" width="150"> <br>
+    Songs in this album:
+    {%for song in a.song_set.all%}
+        <ul>
+            <li>{{song.song_title}}</li>
+        </ul>
+    {%endfor%}
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="music/style.css" rel="stylesheet" type="text/css">
+    <title>{% block title %} {% endblock %}
+    </title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation_bar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">Music!</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navigation_bar">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="{% url 'music:home' %}">
+                            <span class="glyphicon glyphicon-cd"></span>Albums
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-music"></span>Songs
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Profile <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">Pictures</a>
+                            </li>
+                            <li>
+                                <a href="#">Contacts</a>
+                            </li>
+                            <li>
+                                <a href="#">Friends</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'music:add_album' %}">New Album</a>
+                            </li>
+                            <li>
+                                <a href="#">New Song</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="#">Change Settings</a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true" aria-label="Logout"></span>Logout
+                    </a>
+
+                </li>
+            </ul>
+
+                <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+
+                    </div>
+                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+
+            </div>
+
+
+        </div>
+    </nav>
+
+{% block body %}
+{% endblock %}
+</body>
+</html>

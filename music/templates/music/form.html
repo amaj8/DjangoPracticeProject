@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+<body>
+    {% if error_msg %}
+        <strong>{{error_msg}}</strong>
+
+    {% else %}
+
+        <h1>Details for album id {{a.id}}</h1><br>
+        Album title: {{a.album_title}}<br>
+        Artist: {{a.artist}}<br>
+        Genre: {{a.genre}}<br>
+        <img src = "{{ a.album_logo }}" height="150" width="150"> <br>
+        Songs in this album:
+
+        <form method="post">
+             {% csrf_token %}
+             {%for song in a.song_set.all%}
+                <input type="checkbox" name="song" id ="song{{forloop.counter}}" value = "{{song.id}}" />
+                <label for="song{{forloop.counter}}">
+                    {{song.song_title}}
+                    {% if song.is_fav %}
+                        <img src="http://images.clipartpanda.com/yellow-stars-clipart-RTG6Gzy8c.svg" height="10" width="10">
+                    {% endif %}
+                </label> <br>
+            {% endfor %}
+
+            <input type="submit" name="Fav" value="Favourite" formaction="{% url 'music:favourite' a.id %}">
+            <br><br>
+            <input type="submit" name="Unfav" value="Un-Favourite" formaction="{% url 'music:defavourite' a.id %}">
+
+        </form>
+
+    {% endif %}
+</body>
+</html>

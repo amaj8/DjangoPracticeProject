@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'music/base_template.html' %}
+    <title>{% block title %}Add Album{% endblock %}</title>
+</head>
+<body>
+    {%block body%}
+
+        <div class="container-fluid" style="margin-left:15px;">
+            <h1>New Album</h1>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class = "save btn btn-default">Save</button>
+            </form>
+        </div>
+
+
+
+    {% endblock %}
+</body>
+</html>

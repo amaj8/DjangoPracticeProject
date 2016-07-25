@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'music/base_template.html' %}
+{% if albums %}
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa" rel="stylesheet">
+        <link href="home_style.css" rel="stylesheet" type="text/css">
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}Music!{% endblock %}
+        </title>
+    </head>
+    <body>
+        {% block body %}
+        <h1 id="heading">
+            Welcome to the Music app homepage. Click on the links below to see more details
+        </h1>
+        <ul>
+        {% for al in albums %}
+            <li><a href="{% url 'music:album_detail' al.id %}"> {{al.album_title}} </a></li>
+        {% endfor %}
+        </ul>
+        {% endblock %}
+    </body>
+
+
+{% else %}
+    <h3>Sorry, no albums to display</h3>
+{% endif %}
+
+
+</html>
