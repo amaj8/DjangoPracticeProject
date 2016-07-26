@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+
 {% extends 'music/base_template.html' %}
-<head>
-    <meta charset="UTF-8">
-    <title>
         {% block title %}
-        {{a.album_title}}
+            {{a.album_title}}
         {% endblock%}
-    </title>
-</head>
-<body>
+
 {% block body %}
 
     <h1>Details for album id {{a.id}}</h1><br>
@@ -26,5 +20,3 @@
     {%endfor%}
 
 {% endblock %}
-</body>
-</html>
