@@ -5,18 +5,50 @@
         {% endblock%}
 
 {% block body %}
+    <div class="container-fluid pull-left" style="margin-left:10px; border:1px green; background-color:#f2f1f1; padding-top:10px;">
+        <img src="{{a.album_logo}}" class="img-circle" height="150px" width="150px">
+        <p class="text-center"> <abbr title="Album Title"> {{a.album_title}} </abbr> </p>
+        <p class="text-center text-success"> <abbr title="Genre"> {{a.genre}} </abbr> </p>
+    </div>
 
-    <h1>Details for album id {{a.id}}</h1><br>
-    Album title: {{a.album_title}}<br>
-    Artist: {{a.artist}}<br>
-    Genre: {{a.genre}}<br>
-    <! {% load static %} >
-    <img src = "{{ a.album_logo }}" height="150" width="150"> <br>
-    Songs in this album:
-    {%for song in a.song_set.all%}
-        <ul>
-            <li>{{song.song_title}}</li>
-        </ul>
-    {%endfor%}
+    {% if a.song_set.all%}
+        <div class="container-fluid col-md-offset-2">
+            <h3>Songs</h3>
 
-{% endblock %}
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for song in a.song_set.all%}
+                        <tr>
+                            <td>{{song.song_title}}</td>
+                            <td>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-volume-down">Listen</span>
+                                </a>
+                                <a href="#">
+                                    <span class="glyphicon glyphicon-edit">Edit</span>
+                                </a>
+                            </td>
+                        </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+    {% else %}
+        <h3 class="col-md-offset-2">Sorry there are no songs in this album</h3>
+    {% endif %}
+
+    <div class="container-fluid pull-left">
+            <a href="{% url 'music:add_song' a.id %}" class="btn btn-primary">Add a new song</a>
+
+    </div>
+{% endblock body %}

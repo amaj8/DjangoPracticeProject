@@ -3,21 +3,45 @@
 
     {% block head %}
         <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa" rel="stylesheet">
-        <link href="home_style.css" rel="stylesheet" type="text/css">
+        <link href="templates/home_style.css" rel="stylesheet" type="text/css">
         <meta charset="UTF-8">
     {% endblock %}
 
     {% block title %}Music!{% endblock %}
 
     {% block body %}
-        <h2 id="heading">
-            Welcome to the Music app homepage. Click on the links below to see more details
-        </h2>
-        <ul>
-        {% for al in albums %}
-            <li><a href="{% url 'music:album_detail' al.id %}"> {{al.album_title}} </a></li>
-        {% endfor %}
-        </ul>
+        <div class="container-fluid pull-right">
+            <a href="#">
+                <span class="glyphicon glyphicon-sort-by-alphabet sort-glyphicon" style="font-size:45px;"></span>
+            </a>
+
+            <a href="#">
+                <span class="glyphicon glyphicon-sort-by-alphabet-alt sort-glyphicon" style="font-size:45px;"></span>
+            </a>
+
+        </div>
+        <div class="container-fluid">
+            <h2 id="heading">
+                Welcome to the Music app homepage. Click on the links below to see more details
+            </h2>
+
+            <ul class="list-unstyled list-inline">
+            {% for al in albums %}
+                <li>
+                    <a href="{% url 'music:album_detail' al.id %}">
+                        <div class="container-fluid">
+                            <img src="{{al.album_logo}}" class="img-circle" height="150px" width="150px">
+                            <p class="text-center"> <abbr title="Album Title"> {{al.album_title}} </abbr> </p>
+                            <p class="text-center text-success"> <abbr title="Genre"> {{al.genre}} </abbr> </p>
+                        </div>
+
+                    </a>
+                </li>
+
+            {% endfor %}
+            </ul>
+        </div>
+
     {% endblock %}
 
 

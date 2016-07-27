@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'music/base_template.html' %}
 
-</body>
-</html>
+{% block body %}
+    <div class="container-fluid" style="margin-left:15px;">
+        <h3>{% block form_title %} {% endblock %}</h3>
+
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit" class="save btn btn-default">Save</button>
+        </form>
+
+    </div>
+{% endblock %}

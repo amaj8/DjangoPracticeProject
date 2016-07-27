@@ -5,3 +5,8 @@ class AlbumForm(forms.ModelForm):
     class Meta:
         model = Album
         fields =('album_title','artist','genre','album_logo',)
+
+class SongForm(forms.ModelForm):
+    class Meta:
+        model = Song
+        fields = ('song_title',)

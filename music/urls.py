@@ -19,5 +19,6 @@ urlpatterns = [
 urlpatterns= [
     url(r'^$',views.HomeView.as_view(),name='home'),
     url(r'^(?P<pk>\d+)/$',views.DetailView.as_view(),name='album_detail'),
-    url(r'^add/album/$',views.addNew,name='add_album')
+    url(r'^add/album/$',views.addAlbum,name='add_album'),
+    url(r'^add/song/(?P<album_id>\d+)/$',views.addSong,name='add_song'),
 ]

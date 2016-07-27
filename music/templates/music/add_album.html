@@ -1,17 +1,9 @@
-{% extends 'music/base_template.html' %}
-    {% block title %}Add Album{% endblock %}
+{% extends 'music/form_base.html' %}
 
-    {%block body%}
+{% block title %}
+    New Album
+{% endblock %}
 
-        <div class="container-fluid" style="margin-left:15px;">
-            <h1>New Album</h1>
-            <form method="POST" class="post-form">
-                {% csrf_token %}
-                {{form.as_p}}
-                <button type="submit" class = "save btn btn-default">Save</button>
-            </form>
-        </div>
-
-
-
-    {% endblock %}
+{% block form_title %}
+    New Album
+{% endblock %}
