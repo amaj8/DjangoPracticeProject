@@ -21,4 +21,6 @@ urlpatterns= [
     url(r'^(?P<pk>\d+)/$',views.DetailView.as_view(),name='album_detail'),
     url(r'^add/album/$',views.addAlbum,name='add_album'),
     url(r'^add/song/(?P<album_id>\d+)/$',views.addSong,name='add_song'),
+    url(r'^update/album/$',views.UpdateAlbum.as_view(),name='update_album'),
+    url(r'^update/song/$',views.UpdateSong.as_view(),name='update_song'),
 ]

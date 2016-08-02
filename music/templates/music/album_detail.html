@@ -30,7 +30,7 @@
                                 <a href="#">
                                     <span class="glyphicon glyphicon-volume-down">Listen</span>
                                 </a>
-                                <a href="#">
+                                <a href="{% url 'music:update_song' %}">
                                     <span class="glyphicon glyphicon-edit">Edit</span>
                                 </a>
                             </td>
@@ -47,7 +47,7 @@
         <h3 class="col-md-offset-2">Sorry there are no songs in this album</h3>
     {% endif %}
 
-    <div class="container-fluid pull-left">
+    <div class="container-fluid pull-left" style="margin-top:4px;">
             <a href="{% url 'music:add_song' a.id %}" class="btn btn-primary">Add a new song</a>
 
     </div>

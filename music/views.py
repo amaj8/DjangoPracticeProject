@@ -9,14 +9,20 @@ class HomeView(generic.ListView):
     context_object_name = 'albums'
 
     def get_queryset(self):
-        return Album.objects.order_by('album_title')
-
-
+        return Album.objects.all().order_by('album_title')
 
 class DetailView(generic.DetailView):
     model = Album
     context_object_name = 'a'
     template_name='music/album_detail.html'
+
+class UpdateAlbum(generic.UpdateView):
+    model = Album
+    template_name='music/add_album.html'
+
+class UpdateSong(generic.UpdateView):
+    model = Song
+    template_name='music/add_song.html'
 
 def addAlbum(request):
     if request.method == "POST" :

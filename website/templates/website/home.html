@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Home</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h3>
+            <pre>
+                Welcome to the homepage of the website.
+                Click on the links below to get started!
+                </pre>
+        </h3>
+
+        <a href="{% url 'website:music' %}" class="btn btn-primary">Music!</a>
+        <br>
+        <a href="{% url 'website:admin' %}" class="btn btn-primary">Admin portal</a>
+
+    </div>
+</body>
+</html>

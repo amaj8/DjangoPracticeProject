@@ -20,7 +20,7 @@ from . import views
 appname='website'
 
 urlpatterns = [
-    url(r'^$',views.home,name = 'home'),
-    url(r'^admin/', admin.site.urls),
-    url(r'^music/',include('music.urls')),
+    #url(r'^$',views.HomeView,name = 'home'),
+    url(r'^admin/', admin.site.urls,name='admin'),
+    url(r'',include('music.urls'),name='music'),
 ]

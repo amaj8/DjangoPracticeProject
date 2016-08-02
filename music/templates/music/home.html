@@ -1,26 +1,20 @@
 {% extends 'music/base_template.html' %}
 {% if albums %}
 
+{% load staticfiles %}
     {% block head %}
         <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa" rel="stylesheet">
-        <link href="templates/home_style.css" rel="stylesheet" type="text/css">
+        <link href="css/home_style.css" rel="stylesheet" type="text/css">
         <meta charset="UTF-8">
     {% endblock %}
 
     {% block title %}Music!{% endblock %}
 
     {% block body %}
-        <div class="container-fluid pull-right">
-            <a href="#">
-                <span class="glyphicon glyphicon-sort-by-alphabet sort-glyphicon" style="font-size:45px;"></span>
-            </a>
 
-            <a href="#">
-                <span class="glyphicon glyphicon-sort-by-alphabet-alt sort-glyphicon" style="font-size:45px;"></span>
-            </a>
 
-        </div>
-        <div class="container-fluid">
+        <div class="container-fluid" id="albums_display">
+
             <h2 id="heading">
                 Welcome to the Music app homepage. Click on the links below to see more details
             </h2>

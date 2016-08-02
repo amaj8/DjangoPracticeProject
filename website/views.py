@@ -1,5 +1,4 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
-def home(request):
-    text = "<h1>Welcome to the homepage of this website"
-    return HttpResponse(text)
+def HomeView(request):
+    return render(request,'website/home.html')
