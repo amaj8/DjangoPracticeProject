@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load staticfiles %}
     <meta charset="utf-8">
+
     <!-- For bootstrap -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -10,7 +12,7 @@
 
     <!--Google font for the Music! logo-->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'music/style.css' %}" rel="stylesheet" type="text/css">
 
     {% block head %} {% endblock %}
     <title>{% block title %} {% endblock %}
@@ -42,19 +44,48 @@
                 </ul>
 
 
-                <form class="navbar-form navbar-left" role="search" method="get" action="#">
+                <form class="navbar-form navbar-left" role="search" method="get" action="{% url 'music:search_album' %}">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" name="q" value="{{query}}">
 
                     </div>
                     <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
                 </form>
 
+                {% if user %}
+                    <div class="pull-right">
+                        Hello {{user.username}}!
+                        <span class="glyphicon glyphicon-logout"></span>Logout
+                    </div>
+                {% endif  %}
             </div>
+
 
 
         </div>
     </nav>
+    {% if query %}     <!--This if is needed because we want to print out the results page only when the user has searched something-->
+        <div class="container-fluid" style="border:solid 1px green;">
+
+            {%if results%}
+                <h3>The following items were found:</h3>
+                {% for item in results %}
+
+                    <ul>
+                        <a href="{% url 'music:album_detail' item.id %}">
+                            {{item}}
+                        </a>
+
+                    </ul>
+                {% endfor %}
+
+            {%else%}
+                <h3>Sorry no results match your search</h3>
+            {% endif %}
+
+        </div>
+    {% endif %}
+
 
 {% block body %}
 {% endblock %}

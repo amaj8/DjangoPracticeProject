@@ -6,8 +6,45 @@
 
         <form method="POST" class="post-form">
             {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit" class="save btn btn-default">Save</button>
+            <!--<div class="container-fluid">
+                <div class="span1">
+                    <table class="table table-striped">
+                        <tbody>
+
+                            {{form.as_table}}
+
+                        </tbody>
+                    </table>
+
+                    <button type="submit" class="save btn btn-active">Save</button>
+                </div>
+            </div>
+            -->
+
+            <table class="table">
+                <tbody>
+                     <col width="200">
+                    <col width="100">
+                    {% for field in form %}
+                        <tr>
+                            {% for error in field.errors %}
+                                <td colspan="2">
+                                    <span class="text-warning">{{error}}</span>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <td style="padding-right:10px;">{{field.label_tag}}</td>
+                            <td style="width:1000px;">{{field}}</td>
+
+                        </tr>
+
+                    {% endfor %}
+                </tbody>
+
+            </table>
+            <button type="submit" class="save btn btn-active">Save</button>
+
         </form>
 
     </div>

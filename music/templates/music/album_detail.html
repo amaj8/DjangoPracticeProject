@@ -30,7 +30,7 @@
                                 <a href="#">
                                     <span class="glyphicon glyphicon-volume-down">Listen</span>
                                 </a>
-                                <a href="{% url 'music:update_song' %}">
+                                <a href="{% url 'music:update_song' song.id%}">
                                     <span class="glyphicon glyphicon-edit">Edit</span>
                                 </a>
                             </td>

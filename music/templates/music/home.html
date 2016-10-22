@@ -15,10 +15,21 @@
 
         <div class="container-fluid" id="albums_display">
 
+
             <h2 id="heading">
                 Welcome to the Music app homepage. Click on the links below to see more details
             </h2>
+        </div>
+        <div class="pull-right">
+            <form method="get" action=".">
 
+                <!--<button type="submit" name="asc" value="1">
+                    <span class="glyphicon glyphicon-sort-by-alphabet"></span>
+                </button>-->
+                <input type="submit" class="btn" name="asc" value="Sort">
+            </form>
+        </div>
+        <div class="container-fluid" id="album_display">
             <ul class="list-unstyled list-inline">
             {% for al in albums %}
                 <li>

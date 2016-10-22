@@ -53,6 +53,7 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'website.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -68,7 +69,22 @@ TEMPLATES = [
         },
     },
 ]
+"""
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [os.path.join(BASE_DIR,'templates/jinja2')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'environment':'jinja2.Environment',
+        },
+    },
+"""
 
+"""
+TEMPLATE_LOADERS= (
+    'jinja2_for_django.Loader',
+)
+"""
 WSGI_APPLICATION = 'website.wsgi.application'
 
 
