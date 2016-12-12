@@ -18,12 +18,15 @@
         <div class="container-fluid" id="albums_display">
 
 
-            <h2 id="heading" style="margin-left:20px; color:#483D8B">
+            <h2 id="heading" style="font-family:'Aref Ruqaa',serif;margin-left:20px; color:#483D8B">
                 {% if not user.is_authenticated %}
                     Hi there! Welcome to the online backup store for music.<br>Click on the albums below to see more details.
                     <br>Sign in or sign up to create your own personal collection.<br><br>
                 {% else %}
-                    My albums<br>Click on the albums below to see more details.
+                    <h3 style="font-family:'Aref Ruqaa',serif;margin-left:20px; color:#483D8B">
+                        My albums
+                    </h3>
+                    <br>Click on the albums below to see more details.
                 {% endif %}
             </h2>
 

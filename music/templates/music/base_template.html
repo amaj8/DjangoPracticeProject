@@ -31,7 +31,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!--<a href="#" class="navbar-brand">Home</a>-->
-                <a href="{% url 'music:home' %}" class="navbar-brand">Music!</a>
+                <a href="{% url 'music:home' %}" class="navbar-brand">
+                    <img src="{% static 'music_icon.png' %}" height="20px" width="20px" class="pull-left">
+                    Music!
+                </a>
 
             </div>
 

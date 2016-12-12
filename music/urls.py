@@ -31,6 +31,7 @@ urlpatterns= [
     url(r'^register/$',views.UserFormView.as_view(),name='register'),
     url(r'^logout/$',views.logout_view,name='logout'),
     url(r'^login/$',views.login_view.as_view(),name='login'),
+    url(r'^(?P<song_id>\d+)/$',views.Favorite_song,name='favorite_song'),
 ]
 
 

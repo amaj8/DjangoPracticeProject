@@ -38,6 +38,15 @@
                                 <a href="{% url 'music:update_song' song.id%}">
                                     <span class="glyphicon glyphicon-edit">Edit</span>
                                 </a>
+                                <!--
+                                <a href="{% url 'music:favorite_song' song.id %}">
+                                {% if song.is_fav %}
+                                      <span class="glyphicon glyphicon-star"></span>
+                                {% else %}
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                {% endif %}
+                                </a>
+                                -->
                             </td>
                         </tr>
                     {%endfor%}

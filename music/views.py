@@ -141,15 +141,25 @@ def SearchAlbum(request):
     if(query):
         qset = (Q(album_title__startswith=query)|Q(album_title__endswith=query)|Q(album_title__icontains=query))
         results = Album.objects.filter(qset).distinct()
+        if request.user.is_authenticated():
+            results = results.filter(user=request.user).distinct()
     else:
         results = []
-    albums = Album.objects.all().order_by('album_title')
+    if request.user.is_authenticated():
+        albums = Album.objects.filter(user=request.user).order_by('album_title')
+    else:
+        albums = Album.objects.order_by('album_title')
     c = {
         'albums':albums,
         'results':results,
         'query':query,
     }
     return render(request,'music/home.html',c)
+
+def Favorite_song(request,song_id):
+    song = Song.objects.get(pk = song_id)
+    song.is_fav = not song.is_fav
+    return redirect('music:album_detail')
 
 
 
