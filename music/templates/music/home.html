@@ -8,7 +8,9 @@
         <meta charset="UTF-8">
     {% endblock %}
 
-    {% block title %}Music!{% endblock %}
+    {% block title %}
+        Music!
+    {% endblock %}
 
     {% block body %}
 
@@ -16,26 +18,32 @@
         <div class="container-fluid" id="albums_display">
 
 
-            <h2 id="heading">
-                Welcome to the Music app homepage. Click on the links below to see more details
+            <h2 id="heading" style="margin-left:20px; color:#483D8B">
+                {% if not user.is_authenticated %}
+                    Hi there! Welcome to the online backup store for music.<br>Click on the albums below to see more details.
+                    <br>Sign in or sign up to create your own personal collection.<br><br>
+                {% else %}
+                    My albums<br>Click on the albums below to see more details.
+                {% endif %}
             </h2>
+
+
         </div>
         <div class="pull-right">
-            <form method="get" action=".">
-
-                <!--<button type="submit" name="asc" value="1">
-                    <span class="glyphicon glyphicon-sort-by-alphabet"></span>
-                </button>-->
-                <input type="submit" class="btn" name="asc" value="Sort">
-            </form>
+            <a href="?order_by=album_title">
+                <span class="glyphicon glyphicon-sort-by-alphabet" style="font-size:40px"></span>
+            </a>
+            <a href="?order_by=-album_title">
+                <span class="glyphicon glyphicon-sort-by-alphabet-alt" style="font-size:40px"></span>
+            </a>
         </div>
-        <div class="container-fluid" id="album_display">
+        <div class="container-fluid" id="album_display" style="margin-top:20px">
             <ul class="list-unstyled list-inline">
             {% for al in albums %}
                 <li>
                     <a href="{% url 'music:album_detail' al.id %}">
                         <div class="container-fluid">
-                            <img src="{{al.album_logo}}" class="img-circle" height="150px" width="150px">
+                            <img src="{{MEDIA_URL}}{{al.album_logo.url}}" class="img-circle" height="150px" width="150px">
                             <p class="text-center"> <abbr title="Album Title"> {{al.album_title}} </abbr> </p>
                             <p class="text-center text-success"> <abbr title="Genre"> {{al.genre}} </abbr> </p>
                         </div>

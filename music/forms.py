@@ -21,7 +21,12 @@ class AlbumForm(forms.ModelForm):
 class SongForm(forms.ModelForm):
     class Meta:
         model = Song
-        fields = ('song_title','album','is_fav',)
+        fields = ('song_title','audio_file','is_fav')
+        labels={
+            'song_title':'Enter the name of the song',
+            'is_fav':'Mark it as my favourite',
+            'audio_file':'Please upload the audio file',
+        }
 
 class AForm(forms.Form):
     album_title = forms.CharField(label="Enter the title of the album",max_length=100)

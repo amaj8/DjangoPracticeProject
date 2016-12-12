@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     {% load staticfiles %}
     <meta charset="utf-8">
 
@@ -12,8 +13,10 @@
 
     <!--Google font for the Music! logo-->
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <!--CSS stylesheet-->
     <link href="{% static 'music/style.css' %}" rel="stylesheet" type="text/css">
-
+    <!--Music icon for the title bar-->
+    <link rel="shortcut icon" href="{% static 'music/music_icon.ico' %}">
     {% block head %} {% endblock %}
     <title>{% block title %} {% endblock %}
     </title>
@@ -27,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">Home</a>
+                <!--<a href="#" class="navbar-brand">Home</a>-->
                 <a href="{% url 'music:home' %}" class="navbar-brand">Music!</a>
 
             </div>
@@ -52,12 +55,44 @@
                     <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"></span></button>
                 </form>
 
-                {% if user %}
-                    <div class="pull-right">
-                        Hello {{user.username}}!
-                        <span class="glyphicon glyphicon-logout"></span>Logout
-                    </div>
-                {% endif  %}
+
+
+
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+
+                            <li style="background: #ff9999;">
+                                Hello {{user.username}}!
+                            </li>
+                            <li>
+                                <a href="{% url 'music:logout' %}">
+                                    <span class="glyphicon glyphicon-logout"></span>Logout
+                                </a>
+
+                            </li>
+
+                        {% else %}
+
+                            <li>
+                                 <form class="navbar-form navbar-right" method="post" action="{% url 'music:login' %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Username" name="u" value="{{username}}">
+                                        <input type="password" class="form-control" placeholder="Password" name="p" value="{{password}}">
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Sign In</button>
+                                </form>
+                            </li>
+                            <li>
+
+                                    <a href="{% url 'music:register' %}">
+                                        Sign Up!
+                                    </a>
+
+                            </li>
+                        {% endif  %}
+                    </ul>
+
             </div>
 
 
@@ -85,7 +120,14 @@
 
         </div>
     {% endif %}
-
+    <!--Using the message framework-->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags}}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
 {% block body %}
 {% endblock %}

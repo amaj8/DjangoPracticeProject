@@ -13,7 +13,7 @@ class AlbumAdmin(admin.ModelAdmin):
     search_fields=('album_title',)
 
 class SongAdmin(admin.ModelAdmin):
-    list_display = ('lower_case_song_title','is_fav')
+    list_display = ('lower_case_song_title','is_fav','audio_file')
     list_display_links = None
     list_filter = ('is_fav',)
 

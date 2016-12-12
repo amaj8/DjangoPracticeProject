@@ -8,3 +8,10 @@
     padding-right:0px;
     border-spacing: 0px;
 }
+
+body{
+    background-image: url('music_icon.png');
+    background-position: right 50px;
+    background-repeat: no-repeat;
+    background-color: lightblue;
+}

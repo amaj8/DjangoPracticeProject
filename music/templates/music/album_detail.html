@@ -6,9 +6,10 @@
 
 {% block body %}
     <div class="container-fluid pull-left" style="margin-left:10px; border:1px green; background-color:#f2f1f1; padding-top:10px;">
-        <img src="{{a.album_logo}}" class="img-circle" height="150px" width="150px">
+        <img src="{{ MEDIA_URL }}{{a.album_logo.url}}" class="img-circle" height="150px" width="150px">
         <p class="text-center"> <abbr title="Album Title"> {{a.album_title}} </abbr> </p>
         <p class="text-center text-success"> <abbr title="Genre"> {{a.genre}} </abbr> </p>
+        <p class="text-center text-warning"> <abbr title="Artist"> {{a.artist}} </abbr> </p>
     </div>
 
     {% if a.song_set.all%}
@@ -27,9 +28,13 @@
                         <tr>
                             <td>{{song.song_title}}</td>
                             <td>
-                                <a href="#">
+                                <!--<a href="#">
                                     <span class="glyphicon glyphicon-volume-down">Listen</span>
-                                </a>
+                                </a>-->
+                                <audio controls>
+                                    <source src="{{song.audio_file.url}}" type="audio/mpeg">
+                                    Your browser does not support the audio file
+                                </audio>
                                 <a href="{% url 'music:update_song' song.id%}">
                                     <span class="glyphicon glyphicon-edit">Edit</span>
                                 </a>
