@@ -15,8 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <!--CSS stylesheet-->
     <link href="{% static 'music/style.css' %}" rel="stylesheet" type="text/css">
-    <!--Music icon for the title bar-->
-    <link rel="shortcut icon" href="{% static 'music/music_icon.ico' %}">
+
     {% block head %} {% endblock %}
     <title>{% block title %} {% endblock %}
     </title>
@@ -32,7 +31,7 @@
                 </button>
                 <!--<a href="#" class="navbar-brand">Home</a>-->
                 <a href="{% url 'music:home' %}" class="navbar-brand">
-                    <img src="{% static 'music_icon.png' %}" height="20px" width="20px" class="pull-left">
+                    <img src="{% static 'music_icon2.jpg' %}" height="20px" width="20px" class="pull-left">
                     Music!
                 </a>
 

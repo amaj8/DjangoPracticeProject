@@ -159,7 +159,9 @@ def SearchAlbum(request):
 def Favorite_song(request,song_id):
     song = Song.objects.get(pk = song_id)
     song.is_fav = not song.is_fav
-    return redirect('music:album_detail')
+    al_id = song.album
+    return redirect('music:album_detail',pk=al_id)
+
 
 
 

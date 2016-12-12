@@ -10,6 +10,5 @@
 }
 
 body{
-    background-repeat: no-repeat;
-    background-color: #ccffff;
+    background-image: url('background2.jpg');
 }
