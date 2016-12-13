@@ -1,0 +1,14 @@
+{% extends 'music/base_template.html' %}
+{% block title %}
+Delete
+{% endblock %}
+{% block body %}
+<div class="containter-fluid" style="margin-left:20px; margin-top:20px;">
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete {{object}}?</p>
+        <input type="submit" value="Yes, I am sure">
+        <a href="{% url 'music:home' %}">No, take me back please</a>
+    </form>
+</div>
+{% endblock %}

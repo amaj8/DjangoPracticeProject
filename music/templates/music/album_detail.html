@@ -36,17 +36,20 @@
                                     Your browser does not support the audio file
                                 </audio>
                                 <a href="{% url 'music:update_song' song.id%}">
-                                    <span class="glyphicon glyphicon-edit" style="font-size:20px;">Edit</span>
+                                    <span class="glyphicon glyphicon-edit" style="margin-left:10px;font-size:20px;">Edit</span>
                                 </a>
-                                <!--
+
                                 <a href="{% url 'music:favorite_song' song.id %}">
                                 {% if song.is_fav %}
-                                      <span class="glyphicon glyphicon-star" style="font-size:20px;"></span>
+                                      <span class="glyphicon glyphicon-star" style="margin-left:10px;font-size:20px;"></span>
                                 {% else %}
-                                    <span class="glyphicon glyphicon-star-empty" style="font-size:20px;"></span>
+                                    <span class="glyphicon glyphicon-star-empty" style="margin-left:10px;font-size:20px;"></span>
                                 {% endif %}
                                 </a>
-                                -->
+
+                                <a href="{% url 'music:delete_song' song.id %}" style="margin-left:10px;">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
                             </td>
                         </tr>
                     {%endfor%}

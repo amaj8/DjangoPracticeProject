@@ -25,10 +25,7 @@
                     Hi there! Welcome to the online backup store for music.<br>Click on the albums below to see more details.
                     <br>Sign in or sign up to create your own personal collection.<br><br>
                 {% else %}
-                    <h3 style="font-family:'Aref Ruqaa',serif;margin-left:20px; color:#483D8B">
-                        My albums
-                    </h3>
-                    <br>Click on the albums below to see more details.
+                        <b>My albums</b>
                 {% endif %}
             </h2>
 
@@ -42,23 +39,33 @@
                 <span class="glyphicon glyphicon-sort-by-alphabet-alt" style="font-size:40px"></span>
             </a>
         </div>
-        <div class="container-fluid" id="album_display" style="margin-top:20px">
-            <ul class="list-unstyled list-inline">
-            {% for al in albums %}
-                <li>
-                    <a href="{% url 'music:album_detail' al.id %}">
-                        <div class="container-fluid">
-                            <img src="{{MEDIA_URL}}{{al.album_logo.url}}" class="img-circle" height="150px" width="150px">
-                            <p class="text-center"> <abbr title="Album Title"> {{al.album_title}} </abbr> </p>
-                            <p class="text-center text-success"> <abbr title="Genre"> {{al.genre}} </abbr> </p>
-                        </div>
+        {% if not albums %}
+            <p style="margin-left:20px;"><b>No albums to display. Why not add a new one? :)</b></p>
+        {% else %}
+            <div class="container-fluid" id="album_display" style="margin-top:20px">
+                <ul class="list-unstyled list-inline">
 
-                    </a>
-                </li>
+                {% for al in albums %}
+                    <li>
+                        <a href="{% url 'music:album_detail' al.id %}">
+                            <div class="container-fluid">
+                                <img src="{{MEDIA_URL}}{{al.album_logo.url}}" class="img-circle" height="150px" width="150px">
+                                <p class="text-center"> <abbr title="Album Title"> {{al.album_title}} </abbr> </p>
+                                <p class="text-center text-success"> <abbr title="Genre"> {{al.genre}} </abbr> </p>
+                                {% if user.is_authenticated %}
+                                    <a href="{% url 'music:delete_album' al.id %}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                {% endif %}
+                            </div>
 
-            {% endfor %}
-            </ul>
-        </div>
+                        </a>
+                    </li>
+
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
 
     {% endblock %}
 

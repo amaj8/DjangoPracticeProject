@@ -132,8 +132,14 @@ def addSong(request,album_id):
 
     return render(request,'music/add_song.html',{'form':form})
 
-def DeleteAlbum(DeleteView):
+class DeleteAlbum(DeleteView):
     model = Album
+    template_name= 'music/delete.html'
+    success_url = reverse_lazy('music:home')
+
+class DeleteSong(DeleteView):
+    model = Song
+    template_name= 'music/delete.html'
     success_url = reverse_lazy('music:home')
 
 def SearchAlbum(request):
@@ -159,8 +165,10 @@ def SearchAlbum(request):
 def Favorite_song(request,song_id):
     song = Song.objects.get(pk = song_id)
     song.is_fav = not song.is_fav
-    al_id = song.album
+    song.save()
+    al_id = song.album_id
     return redirect('music:album_detail',pk=al_id)
+    #return redirect('music:home')
 
 
 
