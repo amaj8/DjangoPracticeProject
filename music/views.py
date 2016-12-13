@@ -154,7 +154,7 @@ def SearchAlbum(request):
     if request.user.is_authenticated():
         albums = Album.objects.filter(user=request.user).order_by('album_title')
     else:
-        albums = Album.objects.order_by('album_title')
+        albums = Album.objects.filter(user=1).order_by('album_title')
     c = {
         'albums':albums,
         'results':results,
