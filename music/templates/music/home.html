@@ -1,4 +1,5 @@
 {% extends 'music/base_template.html' %}
+{% load set_var %}
 {% if albums %}
 
 {% load staticfiles %}
@@ -7,7 +8,7 @@
         <link href="css/home_style.css" rel="stylesheet" type="text/css">
         <meta charset="UTF-8">
 
-          <!--Music icon for the title bar-->
+    <!--Music icon for the title bar-->
     <link rel="shortcut icon" href="{% static 'music/music_icon2.ico' %}">
     {% endblock %}
     {% block title %}
@@ -20,11 +21,13 @@
         <div class="container-fluid" id="albums_display">
 
 
-            <h2 id="heading" style="font-family:'Aref Ruqaa',serif;margin-left:20px; color:#483D8B">
+            <h2 style="margin-left:20px; color:#483D8B">
                 {% if not user.is_authenticated %}
-                    Hi there! Welcome to the online backup store for music.<br>Click on the albums below to see more details.
+                    Hi there! Welcome to Music! the online backup store for your favorite music.<br>Click on the albums below to see more details.
                     <br>Sign in or sign up to create your own personal collection.<br><br>
+            </h2>
                 {% else %}
+                <h2 id="heading" style="font-family:'Aref Ruqaa',serif;margin-left:20px; color:#483D8B">
                         <b>My albums</b>
                 {% endif %}
             </h2>
@@ -52,11 +55,34 @@
                                 <img src="{{MEDIA_URL}}{{al.album_logo.url}}" class="img-circle" height="150px" width="150px">
                                 <p class="text-center"> <abbr title="Album Title"> {{al.album_title}} </abbr> </p>
                                 <p class="text-center text-success"> <abbr title="Genre"> {{al.genre}} </abbr> </p>
-                                {% if user.is_authenticated %}
-                                    <a href="{% url 'music:delete_album' al.id %}">
+
+                                <!--Delete the album-->
+                                <!--
+                                {% if not user.is_authenticated %}
+                                    {% set link = " url 'music:register'" %}
+
+                                {% else %}
+                                    <!--{% set link = "'music:delete_album' al.id" %}-->
+                                <!--    {% set link = " url 'music:delete_album' al.id" %}
+
+                                {% endif %}
+
+                                    {% with "{%"|add:link|add:" %"|add:"}" as link %}
+                                        <a href={{link}}>
+                                            <h3>Link is {{link}}</h3>
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    {% endwith %}
+                                -->
+                                     <a href="{% url 'music:delete_album' al.id %}">
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </a>
-                                {% endif %}
+
+                                <!--Edit album-->
+                                     <a href="{% url 'music:update_album' al.id %}">
+                                        <span class="glyphicon glyphicon-edit" style="margin-left:10px;font-size:20px;">Edit</span>
+                                    </a>
+
                             </div>
 
                         </a>
@@ -73,5 +99,6 @@
 {% else %}
     <h3>Sorry, no albums to display</h3>
 {% endif %}
+
 
 

@@ -1,25 +1,13 @@
 {% extends 'music/base_template.html' %}
 
+{% block above %}
+{% endblock%}
 {% block body %}
     <div class="container-fluid" style="margin-left:15px;">
         <h3>{% block form_title %} {% endblock %}</h3>
 
         <form method="POST" class="post-form" enctype="multipart/form-data">
             {% csrf_token %}
-            <!--<div class="container-fluid">
-                <div class="span1">
-                    <table class="table table-striped">
-                        <tbody>
-
-                            {{form.as_table}}
-
-                        </tbody>
-                    </table>
-
-                    <button type="submit" class="save btn btn-active">Save</button>
-                </div>
-            </div>
-            -->
 
             <table class="table">
                 <tbody>
@@ -48,4 +36,6 @@
         </form>
 
     </div>
+{% endblock %}
+{% block below %}
 {% endblock %}

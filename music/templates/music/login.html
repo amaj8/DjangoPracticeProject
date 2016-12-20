@@ -1,11 +1,25 @@
-{% extends 'music/form_base.html' %}
+{% extends 'music/base_template.html' %}
 
 {% block title %}
     Sign In
-{% endblock %}
+{% endblock title %}
+{% block body %}
+<div class="container-fluid" style="margin-left:15px;">
 
-{% block form_title %}
-    Sign in using your credentials
-{% endblock %}
+    <h3>Login using your credentials or create a new account!</h3>
 
+    <form class="post-form" method="post" action="{% url 'music:login' %}">
+        {% csrf_token %}
+        <input type="text" class="form-control" placeholder="Username" name="u" value="{{username}}" style="width:30%;">
+        <input type="password" class="form-control" placeholder="Password" name="p" value="{{password}}" style="width:30%;">
+
+        <button type="submit" class="btn btn-info">Sign In</button>
+    </form>
+
+    <a href="{% url 'music:register' %}" style="display:block; padding-top:10px;">
+        <button class="btn btn-info">Sign Up!</button>
+    </a>
+</div>
+
+{% endblock body%}
 

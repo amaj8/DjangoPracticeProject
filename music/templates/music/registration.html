@@ -8,4 +8,10 @@
     Create a New Account
 {% endblock %}
 
+{% block above %}
+    <a href="{% url 'music:login' %}">
+        <button class="btn btn-info">Sign In</button>
+    </a>
+{% endblock%}
+
 

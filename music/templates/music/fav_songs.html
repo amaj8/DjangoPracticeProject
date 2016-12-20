@@ -1,33 +1,27 @@
-
 {% extends 'music/base_template.html' %}
-{% load set_var %}
-        {% block title %}
-            {{a.album_title}}
-        {% endblock%}
+
+{% block title %}
+    My Favorite Songs
+{% endblock title%}
 
 {% block body %}
-    <div class="container-fluid pull-left" style="margin-left:10px; border:1px green; background-color:#f2f1f1; padding-top:10px;">
-        <img src="{{ MEDIA_URL }}{{a.album_logo.url}}" class="img-circle" height="150px" width="150px">
-        <p class="text-center"> <abbr title="Album Title"> {{a.album_title}} </abbr> </p>
-        <p class="text-center text-success"> <abbr title="Genre"> {{a.genre}} </abbr> </p>
-        <p class="text-center text-warning"> <abbr title="Artist"> {{a.artist}} </abbr> </p>
-    </div>
-
-    {% if a.song_set.all%}
-        <div class="container-fluid col-md-offset-2">
-            <h3>Songs</h3>
+    {% if fav_songs %}
+        <div class="container-fluid col-md">
+            <h3 style="font-family:'Aref Ruqaa',serif;margin-left:20px; color:#483D8B">
+                <b>My Favorite Songs</b>
+            </h3>
 
             <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Play</th>
-                        <th>Favorite</th>
                         <th>Actions</th>
+                        <th>Album</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {%for song in a.song_set.all%}
+                    {%for song in fav_songs %}
                         <tr>
                             <td>{{song.song_title}}</td>
                             <td>
@@ -37,9 +31,10 @@
                                 </audio>
 
                             </td>
+                            <!--
                             <td>
                                 <!--Favorite the song-->
-                                    <a href="{% url 'music:favorite_song' song.id %}">
+                               <!--     <a href="{% url 'music:favorite_song' song.id %}">
 
                                         {% if song.is_fav %}
                                               <span class="glyphicon glyphicon-star" style="margin-left:10px;font-size:20px;"></span>
@@ -49,15 +44,21 @@
                                     </a>
 
                             </td>
+                            -->
                             <td>
                                 <!--Edit the song-->
                                      <a href="{% url 'music:update_song' song.id %}">
                                         <span class="glyphicon glyphicon-edit" style="margin-left:10px;font-size:20px;">Edit</span>
                                     </a>
+
                                 <!--Delete the song-->
                                     <a href="{% url 'music:delete_song' song.id %}">
                                         <span class="glyphicon glyphicon-trash" style="margin-left:10px;"></span>
                                     </a>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'music:album_detail' song.album.id%}">{{song.album}}</a>
                             </td>
                         </tr>
                     {%endfor%}
@@ -69,10 +70,6 @@
 
 
     {% else %}
-        <h3 class="col-md-offset-2">Sorry there are no songs in this album</h3>
+        <h3 class="col-md-offset-2">You have no favorites yet!</h3>
     {% endif %}
-    <!--Button to add a new song-->
-    <div class="container-fluid pull-left" style="margin-top:4px;">
-            <a href="{% url 'music:add_song' a.id %}" class="btn btn-primary">Add a new song</a>
-    </div>
 {% endblock body %}

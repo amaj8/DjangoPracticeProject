@@ -3,6 +3,7 @@
 <head>
 
     {% load staticfiles %}
+
     <meta charset="utf-8">
 
     <!-- For bootstrap -->
@@ -45,7 +46,13 @@
                             <span class="glyphicon glyphicon-plus"></span>New Album
                         </a>
                     </li>
-
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'music:fav_songs' %}">
+                                <span class="glyphicon glyphicon-star"></span>My Favorites
+                            </a>
+                        </li>
+                    {%endif%}
                 </ul>
 
 
@@ -58,13 +65,13 @@
                 </form>
 
 
-
-
                     <ul class="nav navbar-nav navbar-right">
                         {% if user.is_authenticated %}
 
                             <li style="background: #ff9999;">
-                                Hello {{user.username}}!
+                                <!--<a href="{% url 'music:change_profile' user.id%}">-->
+                                    Hello {{user.username}}!
+                                <!--</a>-->
                             </li>
                             <li>
                                 <a href="{% url 'music:logout' %}">
