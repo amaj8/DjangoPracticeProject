@@ -19,5 +19,8 @@ class Song(models.Model):
     is_fav = models.BooleanField(default=False)
     audio_file = models.FileField()
 
+    def getuser(self):
+        return self.album.user
+
     def __str__(self):
         return self.song_title + " Album: "+ str(self.album)
